@@ -10,6 +10,7 @@ Testnet is the default everywhere; --mainnet is a deliberate act.
 import argparse
 import logging
 
+from .agent import cmd_agent_address, cmd_approve_agent
 from .config import QuoterConfig
 from .live import Quoter, flatten, status
 
@@ -26,7 +27,19 @@ def main():
             sp.add_argument("--dry-run", action="store_true",
                             help="compute and print quotes without sending")
 
+    sp = sub.add_parser("agent-address", help="print the agent wallet's address")
+    sp = sub.add_parser("approve-agent",
+                        help="approve the agent wallet for trading (one-time per network)")
+    sp.add_argument("--mainnet", action="store_true")
+    sp.add_argument("--name", default="mm-quoter", help="agent name shown in the app")
+    sp.add_argument("--agent-address", default=None,
+                    help="agent address to approve (skips reading the local key file)")
+
     args = p.parse_args()
+    if args.cmd == "agent-address":
+        return cmd_agent_address()
+    if args.cmd == "approve-agent":
+        return cmd_approve_agent(args.mainnet, args.name, args.agent_address)
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)-7s %(message)s",
