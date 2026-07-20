@@ -1,0 +1,15 @@
+{
+  "account_address": "0xYOUR_MASTER_ACCOUNT_ADDRESS",
+  "coin": "KAITO",
+  "n_levels": 3,
+  "level_notional_usd": 15.0,
+  "base_half_spread_bps": 6.0,
+  "level_step_bps": 3.0,
+  "vol_k": 1.5,
+  "skew_gain_bps": 4.0,
+  "max_position_usd": 120.0,
+  "requote_bps": 2.0,
+  "max_quote_age_s": 45.0,
+  "max_daily_loss_usd": 20.0,
+  "poll_interval_s": 2.0
+}
